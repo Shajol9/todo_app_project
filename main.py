@@ -4,6 +4,12 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 todo_file_path = os.path.join(script_dir,'todo.txt')
 
 
+def get_todo():
+    with open(todo_file_path, 'r') as local_file:
+            todos = local_file.readlines()
+    return todos
+
+
 while True:
     user_action = input ("Type add, show, edit, completed or exit: ")
     user_action = user_action.strip()
@@ -12,9 +18,7 @@ while True:
     if user_action.startswith("add"):
         todo_item = user_action[4:] + "\n"
         
-        file = open(todo_file_path, 'r')
-        todo_list=file.readlines()
-        file.close()
+        todo_list = get_todo()
 
         todo_list.append(todo_item.capitalize())
 
@@ -23,8 +27,7 @@ while True:
         file.close()
 
     elif user_action.startswith("show"):
-        with open(todo_file_path, 'r') as file:
-            todo_list = file.readlines()
+        todo_list = get_todo()
 
         #new_todo = [item.strip("\n") for item in todo_list]
 
@@ -36,19 +39,17 @@ while True:
     elif user_action.startswith("edit"):
         try:    
             number = int(user_action[5:]) - 1
-            # print (f"Exsisting to do: {todo_list[number]}")
-            # todo_list [number] = input (f"Updae your todo item to: {number}: ")
-            # print (f"Updated todo item {number} is: {todo_list[number]}")
 
-            with open(todo_file_path, 'r') as file:
-                todo_list = file.readlines()
-                print (f"Exsisting to do: {todo_list[number]}")
+            todo_list = get_todo()
+            
+            print (f"Exsisting to do: {todo_list[number]}")
 
             update = input(f"Update item number {number + 1} to: ") + "\n"
             todo_list [number] = update.capitalize()
 
             with open(todo_file_path, 'w') as file:
                 file.writelines(todo_list)
+
         except ValueError or IndexError:
             print("Your command is not valid, provide a valid number after the typing 'edit'")
             continue
@@ -57,8 +58,7 @@ while True:
         try:    
             completed_task_index = int(user_action[10:]) - 1
             
-            with open(todo_file_path, 'r') as file:
-                todo_list = file.readlines()
+            todo_list = get_todo()
 
             done_task = todo_list.pop(completed_task_index)
             done_task = done_task.strip('\n')
