@@ -1,2 +1,2 @@
 # todo_app_project
-This a todo app created in python.
+This is a todo app created in python.
