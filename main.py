@@ -4,10 +4,15 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 todo_file_path = os.path.join(script_dir,'todo.txt')
 
 
-def get_todo():
-    with open(todo_file_path, 'r') as local_file:
-            todos = local_file.readlines()
+def get_todo(filepath = todo_file_path):    # use of default parameter in a function defination
+    with open(filepath, 'r') as local_file:
+        todos = local_file.readlines()
     return todos
+
+
+def write_doto(filepath, todo_list,):
+    with open(filepath, 'w') as local_file:
+        local_file.writelines(todo_list)
 
 
 while True:
@@ -22,9 +27,7 @@ while True:
 
         todo_list.append(todo_item.capitalize())
 
-        file = open(todo_file_path, 'w')
-        file.writelines(todo_list)
-        file.close()
+        write_doto(todo_file_path, todo_list)
 
     elif user_action.startswith("show"):
         todo_list = get_todo()
@@ -33,7 +36,7 @@ while True:
 
         for index, item in enumerate(todo_list):
             item = item.strip('\n')
-            row=(f"{index+1}.{item}")
+            row = (f"{index+1}.{item}")
             print(row)
 
     elif user_action.startswith("edit"):
@@ -47,8 +50,7 @@ while True:
             update = input(f"Update item number {number + 1} to: ") + "\n"
             todo_list [number] = update.capitalize()
 
-            with open(todo_file_path, 'w') as file:
-                file.writelines(todo_list)
+            write_doto(todo_file_path, todo_list)
 
         except ValueError or IndexError:
             print("Your command is not valid, provide a valid number after the typing 'edit'")
@@ -63,8 +65,7 @@ while True:
             done_task = todo_list.pop(completed_task_index)
             done_task = done_task.strip('\n')
 
-            with open(todo_file_path, 'w') as file:
-                file.writelines(todo_list)
+            write_doto(todo_file_path, todo_list)
 
             print (f"Task number {completed_task_index + 1}: '{done_task}' marked as completed \ntask {completed_task_index + 1} removed form the todo list.")
             #todo_list.remove(todo_list[completed_task_index])
