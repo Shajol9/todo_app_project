@@ -1,10 +1,10 @@
 import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-todo_file_path = os.path.join(script_dir,'todo.txt')
+TODO_FILE_PATH = os.path.join(script_dir,'todo.txt')
 
 
-def get_todo(filepath = todo_file_path):    # use of default parameter in a function defination
+def get_todo(filepath = TODO_FILE_PATH):    # use of default parameter in a function defination
     """
     Reads a text file and returens it's 
     content line by line as list of items.
@@ -14,7 +14,7 @@ def get_todo(filepath = todo_file_path):    # use of default parameter in a func
     return todos
 
 
-def write_doto( todo_list, filepath = todo_file_path):
+def write_doto( todo_list, filepath = TODO_FILE_PATH):
     """ 
     Writes a list to a text file line by line.
     """

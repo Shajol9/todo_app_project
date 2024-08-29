@@ -1,5 +1,9 @@
 #from functions import get_todo, functions.write_doto 
 import functions
+import time
+
+timedate = time.strftime("Time - %H:%M:%S , Date - %D-%M-%Y")
+print (timedate)
 
 while True:
     user_action = input ("Type add, show, edit, completed or exit: ")
@@ -38,9 +42,16 @@ while True:
 
             functions.write_doto(todo_list)
 
-        except ValueError or IndexError:
-            print("Your command is not valid, provide a valid number after the typing 'edit'")
-            continue
+        except (ValueError, IndexError) as error:
+            if isinstance(error, ValueError):
+                print("Your command is not valid, provide a valid number after the typing 'edit'\nSyntax - 'edit index_number'")
+                continue
+            elif isinstance(error, IndexError):
+                print("No todo task available with the provided index number.\nInsert a valide index number")
+                continue
+            else:
+                print("Unexpected error occured, Try again plese!")
+                continue
 
     elif user_action.startswith("completed"):
         try:    
@@ -55,9 +66,16 @@ while True:
 
             print (f"Task number {completed_task_index + 1}: '{done_task}' marked as completed \ntask {completed_task_index + 1} removed form the todo list.")
             #todo_list.remove(todo_list[completed_task_index])
-        except IndexError:
-            print("The item number is not present.\nProvide a valid item number!")
-            continue
+        except (ValueError, IndexError) as e:
+            if isinstance(e, ValueError):
+                print("The number of the task taht is to be marked as completed needs to be provided.\nPlease use the Syntax: 'completed index_number'")
+                continue
+            elif isinstance(e, IndexError):
+                print("Index number of the task to be completed is not present.\nIndex number should be with in range of todo index")
+                continue
+            else:
+                print("Unexpected error occured, Try again plese!")
+                continue
 
     elif user_action.startswith("exit"):
         print("Exit the loop and the program")
