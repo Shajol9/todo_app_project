@@ -21,3 +21,13 @@ def write_doto( todo_list, filepath = TODO_FILE_PATH):
     with open(filepath, 'w') as local_file:
         local_file.writelines(todo_list)
 
+''' This part is inculded to run the script independently.
+when this function scripts is called by main it rans in the 
+backgroung and the script content gets executed as they are called.
+But if the script is ran independently then this particular block 
+of code makes the scipt run as main script and exexutes the code
+inside this block. '''
+ 
+if __name__ == "__main__":
+    print ("Hello")
+    print(get_todo()) 
