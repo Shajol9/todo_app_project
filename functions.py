@@ -14,7 +14,7 @@ def get_todo(filepath = TODO_FILE_PATH):    # use of default parameter in a func
     return todos
 
 
-def write_doto( todo_list, filepath = TODO_FILE_PATH):
+def write_todo( todo_list, filepath = TODO_FILE_PATH):
     """ 
     Writes a list to a text file line by line.
     """

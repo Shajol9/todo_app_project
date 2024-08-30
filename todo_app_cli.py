@@ -1,4 +1,4 @@
-#from functions import get_todo, functions.write_doto 
+#from functions import get_todo, functions.write_todo 
 import functions
 import time
 
@@ -17,7 +17,7 @@ while True:
 
         todo_list.append(todo_item.capitalize())
 
-        functions.write_doto(todo_list)
+        functions.write_todo(todo_list)
 
     elif user_action.startswith("show"):
         todo_list = functions.get_todo()
@@ -40,7 +40,7 @@ while True:
             update = input(f"Update item number {number + 1} to: ") + "\n"
             todo_list [number] = update.capitalize()
 
-            functions.write_doto(todo_list)
+            functions.write_todo(todo_list)
 
         except (ValueError, IndexError) as error:
             if isinstance(error, ValueError):
@@ -62,7 +62,7 @@ while True:
             done_task = todo_list.pop(completed_task_index)
             done_task = done_task.strip('\n')
 
-            functions.write_doto(todo_list)
+            functions.write_todo(todo_list)
 
             print (f"Task number {completed_task_index + 1}: '{done_task}' marked as completed \ntask {completed_task_index + 1} removed form the todo list.")
             #todo_list.remove(todo_list[completed_task_index])
