@@ -1,6 +1,11 @@
 import functions
 import FreeSimpleGUI as fsg
 import time
+import os
+
+if not os.path.exists('todo.txt'):
+    with open('todo.txt', 'w') as file:
+        pass
 
 fsg.theme("DarkGreen4")
 # Defining wedgets 

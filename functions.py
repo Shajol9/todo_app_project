@@ -1,9 +1,9 @@
-import os
+# import os
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-TODO_FILE_PATH = os.path.join(script_dir,'todo.txt')
+# script_dir = os.path.dirname(os.path.abspath(__file__))
+# TODO_FILE_PATH = os.path.join(script_dir,'todo.txt')
 
-
+TODO_FILE_PATH = "todo.txt"
 def get_todo(filepath = TODO_FILE_PATH):    # use of default parameter in a function defination
     """
     Reads a text file and returens it's 
